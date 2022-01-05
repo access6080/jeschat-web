@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import ReactTypingEffect from 'react-typing-effect';
+
 import AuthModal from '../components/AuthModal';
-import ModalContext from '../context/ModalContext'
-import logo from '../images/logo.png';
+import LogoBar from '../components/LogoBar';
 
 const Homepage = () => {
-    const { isOpen, setIsOpen, setAuthState } = useContext(ModalContext);
+    const [isOpen, setIsOpen] = useState(false)
+    const [authState, setAuthState] = useState(''); 
 
     const handleClick = (e) => {
         setIsOpen(true);
@@ -15,9 +16,7 @@ const Homepage = () => {
     return (
         <>
             <div className="blue-glassmorphism h-screen w-screen overflow-auto">
-                <div className="w-full flex justify-center items-start h-1/3">  
-                    <img className="m-2 w-16 h-16 cursor-pointer" src={logo} alt='logo' />
-                </div>
+                <LogoBar classProps="h-1/3"/>
 
                 <div className="flex justify-center items-start pt-10 h-3/5 w-full ">
                     <div className={`flex flex-col bg-transparent shadow-2xl md:w-2/4 h-max rounded-lg p-2 transition ease-in duration-500 ${(isOpen) && 'opacity-0 ease-in duration-500'}`}>
@@ -61,7 +60,7 @@ const Homepage = () => {
                     <p className="text-sm"> Website by Jemak</p>
                 </div>
             </div>
-            <AuthModal />
+            <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} authState={authState}/>
         </>
     )
 }

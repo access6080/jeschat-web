@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Homepage from './pages/Homepage'
-import ModalContext from './context/ModalContext';
+import Chat from './pages/Chat';
 
 const App = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [authState, setAuthState] = useState(''); 
-  
   return (
-    <ModalContext.Provider value={{isOpen, setIsOpen, authState, setAuthState}}>
-            <Homepage />
-    </ModalContext.Provider> 
+    <Router>
+      <Routes>
+        <Route exact path="/" element={ <Homepage/> }/>
+        <Route path="/chat" element={ <Chat/> }/>
+      </Routes>
+    </Router>
   )
 }
 

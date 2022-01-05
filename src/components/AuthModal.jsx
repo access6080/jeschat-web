@@ -1,9 +1,7 @@
-import { Fragment, useContext } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import ModalContext from '../context/ModalContext'
 
-const AuthModal = () => {
-    const { isOpen, setIsOpen, authState } = useContext(ModalContext);
+const AuthModal = ({ isOpen, setIsOpen, authState }) => {
 
     const closeModal = (e) => {
         e.preventDefault();
