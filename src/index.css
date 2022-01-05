@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.blue-glassmorphism{
+    background-image : #b8f1ff;
+    background-image : radial-gradient(at 40% 20%, hsla(244, 91%, 48%, 1)0, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 1)0, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(191, 92%, 48%, 1)0, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(212, 44%, 80%, 1)0, transparent 50%),
+    radial-gradient(at 13% 93%, hsla(0, 0%, 99%, 1)0, transparent 50%),
+    radial-gradient(at 82% 82%, hsla(242, 100%, 70%, 1)0, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(242, 93%, 56%, 1)0, transparent 50%);
+}
