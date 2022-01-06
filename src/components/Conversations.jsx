@@ -1,6 +1,9 @@
 import React from 'react'
 import { FaSearch } from 'react-icons/fa';
+import { BsPencilSquare } from 'react-icons/bs';
+
 import ChatList from './Chatlist';
+import CCenterRow from './CCenterRow';
 
 
 const Conversations = () => {
@@ -27,6 +30,15 @@ const Conversations = () => {
                 <ChatList />
                 <ChatList />
                 <ChatList />    
+                <ChatList />
+                <ChatList />
+                <ChatList />    
+                <ChatList />
+                <ChatList />
+                <ChatList />    
+            </div>
+            <div className="sticky -bottom-4 z-50 p-2 bg-white">
+                <CCenterRow title="Start A Conversation" Icon={BsPencilSquare} />
             </div>
         </div>
     )

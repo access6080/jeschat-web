@@ -25,6 +25,10 @@
     radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1)0, transparent 50%);
 }
 
+.bg-chat{
+    background-image: url(images/bg.jpg)
+}
+
 
 
 .scrollbar-hide {

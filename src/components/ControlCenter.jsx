@@ -8,16 +8,9 @@ import { GiThreeFriends } from 'react-icons/gi';
 import { GrGroup } from 'react-icons/gr';
 import { GrContactInfo } from 'react-icons/gr';
 
-const CCenterRow = ({Icon, title, bg, disabled}) => {
-    return (
-        <div className={`flex items-center space-x-2 p-4  rounded-xl ${(disabled) ? 'cursor-not-allowed' :'cursor-pointer hover:bg-gray-200'}`}>
-            <div className={`${bg} p-1 rounded-full`}>
-                {<Icon className="w-30 h-30 "/>}
-            </div>
-            <h1 className="text-lg font-serif">{ title }</h1>
-        </div>
-    )
-}
+import CCenterRow from './CCenterRow';
+
+
 
 const ControlCenter = () => {
     return (
