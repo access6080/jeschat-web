@@ -1,21 +1,47 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { useDispatch } from 'react-redux';
+
+import { login, signup } from '../redux/auth';
+
+
+ 
 
 const AuthModal = ({ isOpen, setIsOpen, authState }) => {
-
-    const closeModal = (e) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    
+    
+    const dispatch = useDispatch();
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // handle form submission
+        const formData = { username, password };
+        if (authState === "Sign Up") formData['confirmPassword'] = confirmPassword; 
+        
+        // Handle form submission
+        switch (authState) {
+            case 'Sign Up':
+                dispatch(signup(formData));
+                break;
+            case 'Login':
+                dispatch(login(formData));
+                break;
+            default:
+                break;
+        }
         setIsOpen(false)
     }
 
+    //TODO: Add Form Validation
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog
                 as="div"
                 className="fixed inset-0 z-10 overflow-y-auto"
-                onClose={closeModal}
+                onClose={() => setIsOpen(false)}
                 >
                 <div className="min-h-screen px-4 text-center">
                     <Transition.Child
@@ -54,47 +80,43 @@ const AuthModal = ({ isOpen, setIsOpen, authState }) => {
                             {authState}
                         </Dialog.Title>
                         <div className="mt-2">
-                            <form>
+                            <form onSubmit={handleSubmit} noValidate>
                                     <input
-                                        type="text"
-                                        className="border-none outline-none bg-transparent ring-1 w-full p-2 rounded-lg placeholder:text-black"
-                                        placeholder="Username" 
+                                            type="text"
+                                            name="username"
+                                            className="border-none outline-none bg-transparent ring-1 w-full p-2 rounded-lg placeholder:text-black"
+                                            placeholder="Username" 
+                                            onChange={(e) => setUsername(e.target.value)}
                                     />       
                                     <input
-                                        type="password"
-                                        className="border-none outline-none bg-transparent ring-1 w-full p-2 rounded-lg placeholder:text-black mt-2"
-                                        placeholder="Password" 
+                                            type="password"
+                                            name="password"
+                                            className="border-none outline-none bg-transparent ring-1 w-full p-2 rounded-lg placeholder:text-black mt-2"
+                                            placeholder="Password"
+                                            onChange={(e) => setPassword(e.target.value)}
                                     />      
 
                                 {
-                                    (authState === "Sign Up") && 
-                                        <input
+                                (authState === "Sign Up") && 
+                                    <input
                                             type="password"
+                                            name="confirmPassword"
                                             className="border-none outline-none bg-transparent ring-1 w-full p-2 rounded-lg placeholder:text-black mt-2"
                                             placeholder="Confirm Password" 
-                                        />
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                    />
                                 }
-                                {
-                                    (authState === "Sign Up") && 
-                                        <input
-                                            type="email"
-                                            className="border-none outline-none bg-transparent ring-1 w-full p-2 rounded-lg placeholder:text-black mt-2"
-                                            placeholder="Email" 
-                                        />
-                                }
-
+                                <div className="flex justify-center mt-4">
+                                    <button
+                                        type="submit"
+                                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-black underline  hover:ring-1 hover:ring-black hover:rounded-lg "
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
                             </form>
                         </div>
 
-                        <div className="flex justify-center mt-4">
-                            <button
-                                type="submit"
-                                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-black underline  hover:ring-1 hover:ring-black hover:rounded-lg "
-                                onClick={closeModal}
-                            >
-                                Submit
-                            </button>
-                        </div>
                     </div>
                     </Transition.Child>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { FaSearch } from 'react-icons/fa';
 import { BsPencilSquare } from 'react-icons/bs';
 
-import ChatList from './Chatlist';
+import ChatList from './ChatList';
 import CCenterRow from './CCenterRow';
 
 

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ReactTypingEffect from 'react-typing-effect';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import AuthModal from '../components/AuthModal';
 import LogoBar from '../components/LogoBar';
@@ -7,11 +9,14 @@ import LogoBar from '../components/LogoBar';
 const Homepage = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [authState, setAuthState] = useState(''); 
+    const navigate = useNavigate();
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
 
     const handleClick = (e) => {
         setIsOpen(true);
         setAuthState(e.target.innerText);
     }
+
 
     return (
         <>
@@ -45,14 +50,24 @@ const Homepage = () => {
 
                         <div className="w-full h-[1px] bg-[#2D9D96]"/>
 
-                        <div className="flex justify-center pt-4 w-full">
-                            <div className="p-2 cursor-pointer hover:underline hover:underline-offset-2" onClick={handleClick}>
-                                <p className="text-lg">Login</p>
+                        { (!isAuthenticated) &&
+                            <div className="flex justify-center pt-4 w-full">
+                                <div className="p-2 cursor-pointer hover:underline hover:underline-offset-2" onClick={handleClick}>
+                                    <p className="text-lg">Login</p>
+                                </div>
+                                <div className="p-2 cursor-pointer hover:underline hover:underline-offset-2" onClick={handleClick}>
+                                    <p className="text-lg">Sign Up</p>
+                                </div>
                             </div>
-                            <div className="p-2 cursor-pointer hover:underline hover:underline-offset-2" onClick={handleClick}>
-                                <p className="text-lg">Sign Up</p>
+                        }
+                        {
+                            (isAuthenticated) && 
+                            <div className="flex justify-center pt-4 w-full">
+                                <div className="p-2 cursor-pointer hover:underline hover:underline-offset-2" onClick={() => navigate("/dashboard")}>
+                                    <p className="text-lg">Go to Dashboard</p>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row md:justify-between items-center p-2 h-auto">
