@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useDispatch } from 'react-redux';
 
 import { login, signup } from '../redux/auth';
+import { getRandomOptions } from '../utils/Avatar';
 
 
  
@@ -11,14 +12,18 @@ const AuthModal = ({ isOpen, setIsOpen, authState }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const avatar = getRandomOptions();
     
     
     const dispatch = useDispatch();
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = { username, password };
-        if (authState === "Sign Up") formData['confirmPassword'] = confirmPassword; 
+        const formData = { username, password};
+        if (authState === "Sign Up") {
+            formData['confirmPassword'] = confirmPassword;
+            formData['avatar'] = avatar;
+        }
         
         // Handle form submission
         switch (authState) {

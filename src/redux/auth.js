@@ -5,7 +5,6 @@ export const login = createAsyncThunk(
   'auth/login',
   async (payload) => {
     const { data } = await api.login(payload);
-
     return data;
   })
 
@@ -21,6 +20,7 @@ export const authSlice = createSlice({
   initialState: {
     user: '',
     token: '',
+    avatar: null,
     status: null,
     isAuthenticated: false
   },
@@ -28,8 +28,9 @@ export const authSlice = createSlice({
     refreshToken: (state, { payload }) => {
       state.user = payload.user;
       state.token = payload.token;
-      state.status = (payload.token) ? 'refreshed' :  'refreshed attempted'
+      state.avatar = payload.avatar;
       state.isAuthenticated = (payload.token) ? true : false;
+      state.status = (payload.token) ? 'refreshed' :  'refreshed attempted'
     }
   },
 
@@ -43,6 +44,7 @@ export const authSlice = createSlice({
     [login.fulfilled]: (state,  { payload }) => {
       state.user = payload.user;
       state.token = payload.token;
+      state.avatar = payload.avatar;
       state.isAuthenticated = (payload.token) ? true : false;
       state.status = "success"
     },
@@ -59,6 +61,7 @@ export const authSlice = createSlice({
     [signup.fulfilled]: (state, { payload }) => {      
       state.user = payload.user;
       state.token = payload.token;
+      state.avatar = payload.avatar;
       state.isAuthenticated = (payload.token) ? true : false;
       state.status = "success"
     },
