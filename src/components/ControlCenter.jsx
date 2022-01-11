@@ -9,12 +9,17 @@ import { GrGroup } from 'react-icons/gr';
 import { GrContactInfo } from 'react-icons/gr';
 
 import CCenterRow from './CCenterRow';
-
+import { logout } from '../api';
 
 
 const ControlCenter = () => {
+    const handleLogout = async () => {
+        await logout();
+        window.location.reload();
+    }
+    
     return (
-        <div className="bg-white w-1/5 h-full shadow-lg rounded-lg p-2 hidden xl:block">
+        <div className="glass w-1/5 h-full shadow-lg rounded-lg p-2 hidden xl:block overflow-y-auto">
             <h1 className="text-xl font-serif text-center">Chat Controls</h1>
             <div className="h-[1px] bg-blue-300 my-2" />
             
@@ -29,7 +34,7 @@ const ControlCenter = () => {
             <CCenterRow title="Create A Group" Icon={GrGroup} disabled/>
             <CCenterRow title="Find Friends" Icon={GiThreeFriends}/>
             <CCenterRow title="Create Video Room" Icon={MdFeaturedVideo} disabled/>
-            <CCenterRow title="Logout" Icon={BiLogOut} />
+            <CCenterRow title="Logout" Icon={BiLogOut} onClick={handleLogout} />
 
         </div>
     )

@@ -26,7 +26,7 @@ const Dashboard = () => {
                     {/* Friends List */}
                     <FriendsList />
 
-                    <div className="flex flex-col first:h-full w-full">
+                    <div className="flex flex-col h-full w-full">
                         <div className="flex w-full h-2/4 ml-4">
                             {/* Recent Calls */}
                             <RecentCalls />
@@ -35,7 +35,7 @@ const Dashboard = () => {
                             <Profile />
                         </div>
                         {/* Recent Message */}
-                        <div className="w-full h-2/4 bg-white ml-4 mt-2 rounded-lg shadow-lg">
+                        <div className="w-full h-2/4 glass ml-4 mt-2 rounded-lg shadow-lg">
                         </div>
                     </div>
                 </div>

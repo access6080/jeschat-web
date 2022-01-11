@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .glass {
+        @apply bg-white bg-clip-padding bg-opacity-60
+    }
+}
 
 .blue-glassmorphism{
     background-image : #b8f1ff;
@@ -29,8 +34,6 @@
     background-image: url(images/bg.jpg)
 }
 
-
-
 .scrollbar-hide {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -38,4 +41,41 @@
 
 .scrollbar-hide::-webkit-scrollbar {
     display : none;
+}
+
+/* #spinner {
+    -webkit-animation-name: spinner;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 6s;
+
+    animation-name: spinner;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 6s;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+#spinner:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+} */
+
+.rotate{
+    transform: rotateY(45deg);
+    animation: rotateAnimation 1s linear infinite;
+    animation-direction: reverse;
+}
+
+@keyframes rotateAnimation {
+    from {
+        transform: rotateY(45deg);
+    }
+    to {
+        transform: rotateY(225deg);
+    }
 }

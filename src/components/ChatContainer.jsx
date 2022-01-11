@@ -1,14 +1,16 @@
 import React, { useState, useRef } from 'react';
 import { BsCameraVideoFill } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import { BigHead } from "@bigheads/core";
+
 
 import EmojiInput from './EmojiInput';
 import MessageList from './MessageList';
-import avatar from "../images/avatar.jpg"
-
 
 const ChatContainer = () => {
     const [inputText, setInputText] = useState("");
     const [isdismissed, setIsdismissed] = useState(false);
+    const avatarOptions = useSelector((state) => state.auth.avatar)
     const inputRef = useRef(null);
 
     if (isdismissed) {
@@ -24,10 +26,10 @@ const ChatContainer = () => {
     }
 
     return (
-        <div className="relative bg-white w-11/12 xl:w-2/4 h-full shadow-lg rounded-lg p-2 mx-auto">
+        <div className="relative glass w-11/12 xl:w-2/4 h-full shadow-lg rounded-lg p-2 mx-auto overflow-auto">
             {/* Chat Header */}
             <div className="flex items-center">
-                <img src={avatar} alt='profile' className='h-10 w-10 rounded-full justify-start cursor-pointer' />
+                <BigHead className="w-10 h-10 cursor-pointer" {...avatarOptions} />
 
                 <div className="flex w-full justify-center">
                     <h1 className="text-xl font-serif text-center">Boruto</h1>
@@ -39,13 +41,13 @@ const ChatContainer = () => {
                 </div>
                 
             </div>
-            <div className="h-[1px] bg-blue-300 my-2" />
+            <div className="h-[1px] bg-blue-300" />
 
             {/* Chat  Screen */}
             <MessageList />
 
             {/* Chat Input Box */}
-            <div className="flex w-full jsutify-between p-2 rounded-xl items-center space-x-6">
+            <div className="flex w-full justify-between p-2 rounded-xl items-center space-x-6">
                 <div className="w-11/12 ">
                     <form>
                         <input
