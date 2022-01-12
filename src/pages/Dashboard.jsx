@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import FriendsList from '../components/FriendsList';
 import LogoBar from '../components/LogoBar';
 import RecentCalls from '../components/RecentCalls';
+import RecentMessages from '../components/RecentMessages';
 import Profile from '../components/Profile';
 
 const Dashboard = () => {
@@ -35,8 +36,7 @@ const Dashboard = () => {
                             <Profile />
                         </div>
                         {/* Recent Message */}
-                        <div className="w-full h-2/4 glass ml-4 mt-2 rounded-lg shadow-lg">
-                        </div>
+                        <RecentMessages />
                     </div>
                 </div>
             </div>
