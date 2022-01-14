@@ -22,23 +22,18 @@ const Conversations = () => {
                     />
                 </div>
             </div>
-            {/* ChatList */}
-            <div className="mt-2">
-                <ChatList />
-                <ChatList />
-                <ChatList />  
-                <ChatList />
-                <ChatList />
-                <ChatList />    
-                <ChatList />
-                <ChatList />
-                <ChatList />    
-                <ChatList />
-                <ChatList />
-                <ChatList />    
-            </div>
-            <div className="hidden lg:flex justify-center items-center sticky -bottom-4 z-50 p-2 bg-white bg-clip-padding bg-opacity-100">
-                <CCenterRow title="Start A Conversation" Icon={BsPencilSquare} diff searchable/>
+            <div className="flex flex-col w-full h-full justify-between">
+                {/* ChatList */}
+                <div className="mt-2">
+                    {/* 
+                        <ChatList />
+                        <ChatList />
+                        <ChatList />  
+                    */}
+                </div>
+                <div className="hidden lg:flex justify-center items-center sticky -bottom-4 z-50 p-2 bg-white bg-clip-padding bg-opacity-100">
+                    <CCenterRow title="Start A Conversation" Icon={BsPencilSquare} diff searchable/>
+                </div>
             </div>
         </div>
     )

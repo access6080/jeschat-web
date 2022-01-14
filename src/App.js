@@ -35,7 +35,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/chat" element={<Private component={Chat} />}/> 
+        <Route path="/chat/:name" element={<Chat />}/> 
         <Route path="*" element={<PageNotFound/> }/> 
       </Routes>
     </Router>

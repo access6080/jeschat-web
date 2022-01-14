@@ -1,13 +1,20 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react';
 import { BigHead } from "@bigheads/core";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { search } from '../api';
 import { capitalize } from '../utils/Text';
+import { room as createRoom } from '../redux/chat';
 
 const SearchModal = ({ isOpen, setIsOpen }) => {
     const [query, setQuery] = useState('')
     const [results, setResults] = useState([])
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const token = useSelector((state) => state.auth.token)
 
     const handleSearch = async (e) => {
         setQuery(e.target.value);
@@ -26,7 +33,13 @@ const SearchModal = ({ isOpen, setIsOpen }) => {
         setResults([])
     }
 
+    const startConvo = async (id) => {
+        const { data } = await dispatch(createRoom({ token, id })).unwrap();
+        navigate(`/chat/${data.username}`)
+        handleClose();
+    }
 
+    
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
@@ -84,9 +97,13 @@ const SearchModal = ({ isOpen, setIsOpen }) => {
                         </div>
                         <div className="flex flex-wrap">
                             {results.map((user, key) =>
-                                <div key={key} className="p-2 mt-2 flex flex-col justify-center items-center rounded-xl hover:bg-gray-300 cursor-pointer">
-                                    <BigHead className="w-12 h-12 cursor-pointer" {...user.avatar}/>
-                                    <h1>{ capitalize(user.username) }</h1>
+                                <div
+                                    key={key}
+                                    onClick={() => startConvo(user.id)}
+                                    className="p-2 mt-2 flex flex-col justify-center items-center rounded-xl hover:bg-gray-300 cursor-pointer"
+                                >
+                                        <BigHead className="w-12 h-12 cursor-pointer" {...user.avatar}/>
+                                        <h1>{ capitalize(user.username) }</h1>
                                 </div>
                             )}
                         </div>

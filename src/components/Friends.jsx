@@ -8,33 +8,21 @@ const Friends = () => {
     const [friends, setFriends] = useState([]);
     const token = useSelector((state) => state.auth.token)  
     
-    // useEffect(() => {
-    //     const fetchFriends = async () => {
-    //         const response = await getPreviousConvo(token);
-    //         setFriends(response.data);
-    //     }
+    useEffect(() => {
+        const fetchFriends = async () => {
+            const response = await getPreviousConvo(token);
+            setFriends(response.data);
+        }
 
-    //     // fetchFriends();
-    // }, [token])
+        if (token) return fetchFriends();
+    },[token]);
 
     return (
         <div>
-            {(friends.success === true)
-                &&
-                <div>
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                    <ChatList />
-                </div>
+            {(friends.success === true) && 
+                friends.response.map((user, key) => 
+                    <ChatList key={key} name={user.username} avatar={user.avatar} />
+                )
             }
         </div>
     )
