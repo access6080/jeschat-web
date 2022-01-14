@@ -22,7 +22,7 @@ const Profile = () => {
         <div className="flex flex-col glass w-2/4 ml-4 rounded-lg shadow-lg overflow-hidden">
             <div className="flex flex-col justify-center items-center w-full">
                 <BigHead className="w-48 h-48 cursor-pointer scale-125" {...avatarOption} />
-                <h1 className=" mt-2 p-2 rounded-lg text-2xl font-serif text-center z-50">{capitalize(username)}</h1>
+                <h1 className=" mt-2 p-2 rounded-lg text-2xl font-serif text-center">{capitalize(username)}</h1>
             </div>
             <div className="flex justify-evenly">
                 <div className="flex justify-center space-x-2">

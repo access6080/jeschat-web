@@ -14,6 +14,7 @@ import { logout } from '../api';
 
 const ControlCenter = () => {
     const handleLogout = async () => {
+        console.log("here");
         await logout();
         window.location.reload();
     }
@@ -33,8 +34,10 @@ const ControlCenter = () => {
             <CCenterRow title="Profile" Icon={BsPersonFill} />
             <CCenterRow title="Create A Group" Icon={GrGroup} disabled/>
             <CCenterRow title="Find Friends" Icon={GiThreeFriends}/>
-            <CCenterRow title="Create Video Room" Icon={MdFeaturedVideo} disabled/>
-            <CCenterRow title="Logout" Icon={BiLogOut} onClick={handleLogout} />
+            <CCenterRow title="Create Video Room" Icon={MdFeaturedVideo} disabled />
+            <div className="mt-2" onClick={handleLogout}>
+                <CCenterRow title="Logout" Icon={BiLogOut} />
+            </div>
 
         </div>
     )

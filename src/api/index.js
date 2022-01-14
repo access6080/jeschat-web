@@ -21,3 +21,6 @@ export const getPreviousConvo = (data) =>  apiInstance.get('/chat/prev', {
         authorization: `Bearer ${data}`
     }
 })
+
+// Search
+export const search = (data) => apiInstance.post(`/auth/search?query=${data}`);

@@ -19,7 +19,7 @@ const AuthModal = ({ isOpen, setIsOpen, authState }) => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = { username, password};
+        const formData = { username: username.toLowerCase(), password};
         if (authState === "Sign Up") {
             formData['confirmPassword'] = confirmPassword;
             formData['avatar'] = avatar;

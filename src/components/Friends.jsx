@@ -8,14 +8,14 @@ const Friends = () => {
     const [friends, setFriends] = useState([]);
     const token = useSelector((state) => state.auth.token)  
     
-    useEffect(() => {
-        const fetchFriends = async () => {
-            const response = await getPreviousConvo(token);
-            setFriends(response.data);
-        }
+    // useEffect(() => {
+    //     const fetchFriends = async () => {
+    //         const response = await getPreviousConvo(token);
+    //         setFriends(response.data);
+    //     }
 
-        fetchFriends();
-    }, [token])
+    //     // fetchFriends();
+    // }, [token])
 
     return (
         <div>

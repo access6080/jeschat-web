@@ -2,7 +2,7 @@ import React from 'react';
 import { BsPencilSquare } from 'react-icons/bs';
 
 import CCenterRow from './CCenterRow';
-import Friends from './Friends';
+// import Friends from './Friends';
 // import ChatList from './ChatList';
 
 const FriendsList = () => {
@@ -13,14 +13,14 @@ const FriendsList = () => {
                 <div className="h-[1px] bg-blue-300 my-2"/>                
             </div>
             <div className="flex flex-col h-full justify-between">
-                <div className="mt-2">
-                    <Friends />
+                <div className="mt-2"> 
+                    {/* <Friends /> */}
                 </div>
 
-                <div className="flex justify-center items-center sticky -bottom-4 z-50 p-2 bg-white bg-clip-padding bg-opacity-100">
-                    <CCenterRow title="Start A Conversation" Icon={BsPencilSquare} diff/>
+                <div className="flex justify-center items-center sticky -bottom-4 z-50 p-2 bg-white bg-clip-padding bg-opacity-100" >
+                    <CCenterRow title={"Start A Conversation"} diff Icon={BsPencilSquare} searchable />
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }
