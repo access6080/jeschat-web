@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsPersonFill } from 'react-icons/bs';
+import { MdOutlineDashboard } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
 import { MdFeaturedVideo } from 'react-icons/md';
 import { MdDelete } from 'react-icons/md';
@@ -10,11 +10,11 @@ import { GrContactInfo } from 'react-icons/gr';
 
 import CCenterRow from './CCenterRow';
 import { logout } from '../api';
+import { capitalize } from '../utils/Text';
 
 
-const ControlCenter = () => {
+const ControlCenter = ({name}) => {
     const handleLogout = async () => {
-        console.log("here");
         await logout();
         window.location.reload();
     }
@@ -24,14 +24,14 @@ const ControlCenter = () => {
             <h1 className="text-xl font-serif text-center">Chat Controls</h1>
             <div className="h-[1px] bg-blue-300 my-2" />
             
-            <CCenterRow title="Boruto's Info" Icon={GrContactInfo}/>
+            <CCenterRow title={`${capitalize(name)}'s Info`} Icon={GrContactInfo}/>
             <CCenterRow title="Media" Icon={MdOutlinePermMedia} disabled/>
             <CCenterRow title="Delete Chat" Icon={MdDelete}/>
             
             <h1 className="text-xl font-serif text-center">Control Center</h1>
             <div className="h-[1px] bg-blue-300 my-2" />
 
-            <CCenterRow title="Profile" Icon={BsPersonFill} />
+            <CCenterRow title="Dashboard" Icon={MdOutlineDashboard} navigate="/dashboard"/>
             <CCenterRow title="Create A Group" Icon={GrGroup} disabled/>
             <CCenterRow title="Find Friends" Icon={GiThreeFriends}/>
             <CCenterRow title="Create Video Room" Icon={MdFeaturedVideo} disabled />

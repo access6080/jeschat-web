@@ -1,16 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { BsCameraVideoFill } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
 import { BigHead } from "@bigheads/core";
 
 
 import EmojiInput from './EmojiInput';
 import MessageList from './MessageList';
+import { capitalize } from '../utils/Text';
 
-const ChatContainer = () => {
+const ChatContainer = ({avatar, name}) => {
     const [inputText, setInputText] = useState("");
     const [isdismissed, setIsdismissed] = useState(false);
-    const avatarOptions = useSelector((state) => state.auth.avatar)
     const inputRef = useRef(null);
 
     if (isdismissed) {
@@ -29,10 +28,10 @@ const ChatContainer = () => {
         <div className="relative glass w-11/12 xl:w-2/4 h-full shadow-lg rounded-lg p-2 mx-auto overflow-auto">
             {/* Chat Header */}
             <div className="flex items-center">
-                <BigHead className="w-10 h-10 cursor-pointer" {...avatarOptions} />
+                <BigHead className="w-10 h-10 cursor-pointer" {...avatar} />
 
                 <div className="flex w-full justify-center">
-                    <h1 className="text-xl font-serif text-center">Boruto</h1>
+                    <h1 className="text-xl font-serif text-center">{capitalize(name)}</h1>
                     <div className="h-3 w-3 rounded-full bg-green-300 shadow-lg shadow-lime-100"/>
                 </div>
 

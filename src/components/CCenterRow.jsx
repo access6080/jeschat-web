@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import SearchModal from './SearchModal';
 
-const CCenterRow = ({ Icon, title, bg, disabled, diff = false, searchable = false }) => {
-    const [isOpen, setIsOpen] = useState(false)
+const CCenterRow = ({ Icon, title, bg, disabled, diff = false, searchable = false, navigate="" }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const nav = useNavigate();
 
     const handleClick = () => {
         if (searchable) {
             setIsOpen(true)
         }
+
+        if (navigate) {
+            nav(navigate)
+        }
     }
+
     return (
         <> 
             <div className={`flex items-center space-x-2 p-4 rounded-xl ${(disabled) ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-200'}`} onClick={handleClick}>

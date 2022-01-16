@@ -10,7 +10,7 @@ import { getUser } from '../api';
 
 
 const Chat = () => {
-    const [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState();
     const token = useSelector(state => state.auth.token)
     const recipient = window.location.href.split("/")[4];
 
@@ -18,12 +18,11 @@ const Chat = () => {
     useEffect(() => {
         const fetchRecipient = async () => {
             const response = await getUser({ token, name: recipient });
-            console.log(response);
+            setUserData(response.data.response);
         }
 
         if(token) fetchRecipient();
-    });
-
+    }, [recipient, token]);
 
     return (
         <>
@@ -32,8 +31,8 @@ const Chat = () => {
 
                 <div className="flex justify-between p-2 items-start h-4/5 ">
                     <Conversations />
-                    <ChatContainer />
-                    <ControlCenter />
+                    <ChatContainer name={ userData?.username } avatar={ userData?.avatar}/>
+                    <ControlCenter name={ userData?.username }/>
                 </div>
             </div>
         </>

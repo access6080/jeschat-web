@@ -3,7 +3,6 @@ import { BsPencilSquare } from 'react-icons/bs';
 
 import CCenterRow from './CCenterRow';
 import Friends from './Friends';
-// import ChatList from './ChatList';
 
 const FriendsList = () => {
     return (

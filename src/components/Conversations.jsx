@@ -2,8 +2,8 @@ import React from 'react'
 import { FaSearch } from 'react-icons/fa';
 import { BsPencilSquare } from 'react-icons/bs';
 
-import ChatList from './ChatList';
 import CCenterRow from './CCenterRow';
+import Friends from './Friends';
 
 
 const Conversations = () => {
@@ -25,11 +25,7 @@ const Conversations = () => {
             <div className="flex flex-col w-full h-full justify-between">
                 {/* ChatList */}
                 <div className="mt-2">
-                    {/* 
-                        <ChatList />
-                        <ChatList />
-                        <ChatList />  
-                    */}
+                    <Friends/>
                 </div>
                 <div className="hidden lg:flex justify-center items-center sticky -bottom-4 z-50 p-2 bg-white bg-clip-padding bg-opacity-100">
                     <CCenterRow title="Start A Conversation" Icon={BsPencilSquare} diff searchable/>
