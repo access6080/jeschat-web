@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import LogoBar from '../components/LogoBar'
 import Conversations from '../components/Conversations';
@@ -11,7 +12,8 @@ import { getUser } from '../api';
 
 const Chat = () => {
     const [userData, setUserData] = useState();
-    const token = useSelector(state => state.auth.token)
+    const token = useSelector(state => state.auth.token);
+    const navigate = useNavigate();
     const recipient = window.location.href.split("/")[4];
 
 
@@ -21,8 +23,10 @@ const Chat = () => {
             setUserData(response.data.response);
         }
 
+        if (!token) return navigate('/');
         if(token) fetchRecipient();
-    }, [recipient, token]);
+    }, [recipient, token, navigate]);
+
 
     return (
         <>

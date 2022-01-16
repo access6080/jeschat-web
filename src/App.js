@@ -6,17 +6,19 @@ import {
 } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
+import Homepage from './pages/Homepage';
 import Dashboard from './pages/Dashboard'
 import Chat from './pages/Chat';
 import PageNotFound from './pages/PageNotFound';
-import { Private } from './utils/Private/Private';
+
 import { refreshToken } from './api';
 import { refreshToken as refreshAction } from './redux/auth';
-import Homepage from './pages/Homepage';
+import { renewToken } from './utils/Token';
 
 
 const App = () => {
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
+  renewToken();
   
   useEffect(() => {
     const apiCall = async () => {
