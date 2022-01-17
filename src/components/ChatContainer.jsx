@@ -70,7 +70,7 @@ const ChatContainer = ({avatar, name, room}) => {
                             type="text"
                             value={inputText}
                             placeholder="Send Message"
-                            onChange={(e) => setInputText(e.target.value).trim()}
+                            onChange={(e) => setInputText(e.target.value)?.trim()}
                             onKeyPress={event => event.key === 'Enter' && sendMessage(event)}
                             className="border-none outline-none bg-transparent w-full rounded-xl p-2 placeholder:text-black mt-1 ring-1 ring-blue-300"
                         />

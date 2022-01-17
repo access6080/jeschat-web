@@ -7,6 +7,9 @@ export const disableScroll = () => {
     window.onscroll = function() {
         window.scrollTo(scrollLeft, scrollTop);
     };
+
+    // Hide ScrollBar
+    document.body.style.overflow = 'hidden';
 }
   
 export const enableScroll = () => {

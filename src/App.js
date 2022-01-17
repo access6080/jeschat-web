@@ -23,6 +23,7 @@ const App = () => {
   disableScroll();
   
   useEffect(() => {
+    
     const apiCall = async () => {
       try {
         const { data } = await refreshToken();
