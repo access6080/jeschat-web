@@ -23,11 +23,13 @@ export const getPreviousConvo = (data) => apiInstance.get('/chat/prev', {
 });
 
 export const createRoom = (data) => {
-    axios.post(`${baseUrl}/chat/create-room`, { data:data.id }, {
+    const response = axios.post(`${baseUrl}/chat/create-room`, { data:data.id }, {
         headers: {
             authorization: `Bearer ${data.token}`
         }
     });
+
+    return response;
 }
 
 //GET User

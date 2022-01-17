@@ -14,11 +14,13 @@ import PageNotFound from './pages/PageNotFound';
 import { refreshToken } from './api';
 import { refreshToken as refreshAction } from './redux/auth';
 import { renewToken } from './utils/Token';
+import { disableScroll } from './utils/Page';
 
 
 const App = () => {
   const dispatch = useDispatch();
   renewToken();
+  disableScroll();
   
   useEffect(() => {
     const apiCall = async () => {

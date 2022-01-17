@@ -11,11 +11,7 @@ export const room = createAsyncThunk(
 export const chatSlice = createSlice({
     name: "chat",
     initialState: {
-        recipeint: {
-            id: '',
-            username: ''
-        },
-        avatar: null,
+        room: null,
         isOnline: false,
         status: null
     },
@@ -28,10 +24,7 @@ export const chatSlice = createSlice({
         },
 
         [room.fulfilled]: (state,  { payload }) => {
-            state.recipeint.id = payload.id;
-            state.recipeint.username = payload.username;
-            state.avatar = payload.avatar;
-            state.status = "success"
+            state.room = payload.room;
         },
 
         [room.rejected]: (state) => {

@@ -35,7 +35,7 @@ const SearchModal = ({ isOpen, setIsOpen }) => {
 
     const startConvo = async (id) => {
         const { data } = await dispatch(createRoom({ token, id })).unwrap();
-        navigate(`/chat/${data.username}`)
+        navigate(`/chat/${data.response.username}`)
         handleClose();
     }
 

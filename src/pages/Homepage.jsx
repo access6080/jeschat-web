@@ -20,7 +20,7 @@ const Homepage = () => {
 
     return (
         <>
-            <div className="blue-glassmorphism h-screen w-screen overflow-auto">
+            <div className="blue-glassmorphism h-screen w-screen overflow-auto scrollbar-hide">
                 <LogoBar classProps="h-1/3"/>
 
                 <div className="flex justify-center items-start pt-10 h-3/5 w-full ">

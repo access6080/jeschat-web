@@ -1,15 +1,19 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BsCameraVideoFill } from 'react-icons/bs';
 import { BigHead } from "@bigheads/core";
+import { useSelector} from 'react-redux';
 
 
 import EmojiInput from './EmojiInput';
 import MessageList from './MessageList';
 import { capitalize } from '../utils/Text';
+import { socket, joinRoom, emitMessage } from '../functions/Chat';
 
-const ChatContainer = ({avatar, name}) => {
+const ChatContainer = ({avatar, name, room}) => {
     const [inputText, setInputText] = useState("");
     const [isdismissed, setIsdismissed] = useState(false);
+    const [messageData, setMessageData] = useState([]);
+    const username = useSelector((state) => state.auth.user)
     const inputRef = useRef(null);
 
     if (isdismissed) {
@@ -20,10 +24,21 @@ const ChatContainer = ({avatar, name}) => {
         e.preventDefault();
 
         //  Send Socket to Server
-        // console.log({ inputText });
+        if(inputText.length) emitMessage(inputText)
         setInputText("")
     }
 
+    useEffect(() => {
+        let isMount = true;
+        if(username) joinRoom(username, room)
+
+        socket.on("newChat", ({ username, message }) => {
+            if(isMount) setMessageData(messageData =>[...messageData, { username, message }])
+        })
+
+        return () => { isMount = false };
+    }, [username, room])
+    
     return (
         <div className="relative glass w-11/12 xl:w-2/4 h-full shadow-lg rounded-lg p-2 mx-auto overflow-auto">
             {/* Chat Header */}
@@ -43,7 +58,7 @@ const ChatContainer = ({avatar, name}) => {
             <div className="h-[1px] bg-blue-300" />
 
             {/* Chat  Screen */}
-            <MessageList />
+            <MessageList messages={messageData} name={username}/>
 
             {/* Chat Input Box */}
             <div className="flex w-full justify-between p-2 rounded-xl items-center space-x-6">
@@ -55,7 +70,7 @@ const ChatContainer = ({avatar, name}) => {
                             type="text"
                             value={inputText}
                             placeholder="Send Message"
-                            onChange={(e) => setInputText(e.target.value)}
+                            onChange={(e) => setInputText(e.target.value).trim()}
                             onKeyPress={event => event.key === 'Enter' && sendMessage(event)}
                             className="border-none outline-none bg-transparent w-full rounded-xl p-2 placeholder:text-black mt-1 ring-1 ring-blue-300"
                         />

@@ -19,7 +19,7 @@ const Dashboard = () => {
     });
     
     return (
-        <div className="blue-glassmorphism w-screen h-screen overflow-auto">
+        <div className="blue-glassmorphism w-screen h-screen overflow-auto scrollbar-hide">
             <LogoBar classProps='h-3/20' />
 
             <div className="flex justify-center h-4/5 p-2 ">

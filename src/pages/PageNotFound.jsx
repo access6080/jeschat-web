@@ -10,7 +10,7 @@ const PageNotFound = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="blue-glassmorphism h-screen w-screen overflow-auto">
+        <div className="blue-glassmorphism h-screen w-screen overflow-auto scrollbar-hide">
             <LogoBar />
             <div className="flex flex-col items-center justify-center pt-10 h-3/5 w-full  ">
                 <h1 className="text-6xl font-serif">404 Page Not Found!</h1>
