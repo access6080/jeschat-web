@@ -1,5 +1,4 @@
 import axios from 'axios';
-
  
 const baseUrl = 'http://localhost:3001'; 
 
@@ -7,7 +6,6 @@ const apiInstance = axios.create({
     withCredentials: true,
     baseURL: baseUrl,
 })
-
 
 // Auth APi
 export const login = (data) => apiInstance.post('/auth/login', data)
@@ -32,7 +30,25 @@ export const createRoom = (data) => {
     return response;
 }
 
-//GET User
+export const sendMessage = (data) => {
+    axios.post(`${baseUrl}/chat/send-message`, { text:data.text, recipient:data.recipient, room:data.room }, {
+        headers: {
+            authorization: `Bearer ${data.token}`
+        }
+    });
+}
+
+export const getMessages = (data) => {
+    const response = axios.post(`${baseUrl}/chat/messages`, { room: data.room }, {
+        headers: {
+            authorization: `Bearer ${data.token}`
+        }
+    });
+
+    return response;
+}
+
+// GET User
 export const getUser = async (data) => {
     const response = await axios.get(`${baseUrl}/auth/user/${data.name}`, {
         headers: {

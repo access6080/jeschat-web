@@ -8,7 +8,6 @@ import ControlCenter from '../components/ControlCenter';
 import ChatContainer from '../components/ChatContainer';
 
 import { getUser } from '../api';
-import { createRoom } from '../api';
 
 
 const Chat = () => {
@@ -20,26 +19,21 @@ const Chat = () => {
 
 
     useEffect(() => {
+        let isMount = true;
         const fetchRecipient = async () => {
             const recipientData = await getUser({ token, name: recipient });
-            setUserData(recipientData.data.response);
-        }
-
-        if (!token) return navigate('/');
-        if(token) return fetchRecipient()
-        
-    }, [recipient, token, navigate]);
-
-    useEffect(() => {
-        const fetchRoom = async () => {
-            if (userData?._id !== undefined) {
-                const { data } = await createRoom({ token, id: userData._id });
-                setRoom(data.response.id)
+            if (isMount) {
+                setUserData(recipientData.data.response.user);
+                setRoom(recipientData.data.response.room);
             }
         }
 
-        if(token) return fetchRoom()
-    }, [userData, token]);
+        if (!token) navigate('/');
+        if (token) fetchRecipient()
+        
+        return () => { isMount = false };
+    }, [recipient, token, navigate]);
+
 
     return (
         <>

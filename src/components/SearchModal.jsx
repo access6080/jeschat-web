@@ -1,18 +1,17 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react';
 import { BigHead } from "@bigheads/core";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { search } from '../api';
 import { capitalize } from '../utils/Text';
-import { room as createRoom } from '../redux/chat';
+import { createRoom } from '../api';
 
 const SearchModal = ({ isOpen, setIsOpen }) => {
     const [query, setQuery] = useState('')
     const [results, setResults] = useState([])
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const token = useSelector((state) => state.auth.token)
 
@@ -34,7 +33,8 @@ const SearchModal = ({ isOpen, setIsOpen }) => {
     }
 
     const startConvo = async (id) => {
-        const { data } = await dispatch(createRoom({ token, id })).unwrap();
+        const { data } = await createRoom({ token, id })
+        console.log(data);
         navigate(`/chat/${data.response.username}`)
         handleClose();
     }

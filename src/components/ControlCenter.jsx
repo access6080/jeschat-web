@@ -24,16 +24,16 @@ const ControlCenter = ({name}) => {
             <h1 className="text-xl font-serif text-center">Chat Controls</h1>
             <div className="h-[1px] bg-blue-300 my-2" />
             
-            <CCenterRow title={`${capitalize(name)}'s Info`} Icon={GrContactInfo}/>
+            <CCenterRow title={`${capitalize(name)}'s Info`} Icon={GrContactInfo} disabled/>
             <CCenterRow title="Media" Icon={MdOutlinePermMedia} disabled/>
-            <CCenterRow title="Delete Chat" Icon={MdDelete}/>
+            <CCenterRow title="Delete Chat" Icon={MdDelete} disabled/>
             
             <h1 className="text-xl font-serif text-center">Control Center</h1>
             <div className="h-[1px] bg-blue-300 my-2" />
 
             <CCenterRow title="Dashboard" Icon={MdOutlineDashboard} navigate="/dashboard"/>
             <CCenterRow title="Create A Group" Icon={GrGroup} disabled/>
-            <CCenterRow title="Find Friends" Icon={GiThreeFriends}/>
+            <CCenterRow title="Find Friends" Icon={GiThreeFriends} disabled/>
             <CCenterRow title="Create Video Room" Icon={MdFeaturedVideo} disabled />
             <div className="mt-2" onClick={handleLogout}>
                 <CCenterRow title="Logout" Icon={BiLogOut} />

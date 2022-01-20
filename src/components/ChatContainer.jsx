@@ -8,12 +8,14 @@ import EmojiInput from './EmojiInput';
 import MessageList from './MessageList';
 import { capitalize } from '../utils/Text';
 import { socket, joinRoom, emitMessage } from '../functions/Chat';
+import { sendMessage as sendToDb} from '../api';
 
 const ChatContainer = ({avatar, name, room}) => {
     const [inputText, setInputText] = useState("");
     const [isdismissed, setIsdismissed] = useState(false);
     const [messageData, setMessageData] = useState([]);
-    const username = useSelector((state) => state.auth.user)
+    const username = useSelector((state) => state.auth.user);
+    const token = useSelector((state) => state.auth.token);
     const inputRef = useRef(null);
 
     if (isdismissed) {
@@ -24,7 +26,10 @@ const ChatContainer = ({avatar, name, room}) => {
         e.preventDefault();
 
         //  Send Socket to Server
-        if(inputText.length) emitMessage(inputText)
+        if (inputText.length) {
+            emitMessage(inputText)
+            sendToDb({token, recipient:name, text:inputText, room})
+        }
         setInputText("")
     }
 
@@ -58,7 +63,7 @@ const ChatContainer = ({avatar, name, room}) => {
             <div className="h-[1px] bg-blue-300" />
 
             {/* Chat  Screen */}
-            <MessageList messages={messageData} name={username}/>
+            <MessageList messages={messageData} name={username} room={room}/>
 
             {/* Chat Input Box */}
             <div className="flex w-full justify-between p-2 rounded-xl items-center space-x-6">
