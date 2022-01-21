@@ -29,6 +29,7 @@ export const authSlice = createSlice({
       state.user = payload.user;
       state.token = payload.token;
       state.avatar = payload.avatar;
+      state.friends = payload.friends;
       state.isAuthenticated = (payload.token) ? true : false;
       state.status = (payload.token) ? 'refreshed' :  'refreshed attempted'
     }
@@ -45,6 +46,7 @@ export const authSlice = createSlice({
       state.user = payload.user;
       state.token = payload.token;
       state.avatar = payload.avatar;
+      state.friends = payload.friends;
       state.isAuthenticated = (payload.token) ? true : false;
       state.status = "success"
     },
@@ -62,6 +64,7 @@ export const authSlice = createSlice({
       state.user = payload.user;
       state.token = payload.token;
       state.avatar = payload.avatar;
+      state.friends = payload.friends;
       state.isAuthenticated = (payload.token) ? true : false;
       state.status = "success"
     },

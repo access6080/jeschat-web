@@ -12,6 +12,7 @@ import { logout } from '../api';
 const Profile = () => {
     const username = useSelector((state) => state.auth.user);
     const avatarOption = useSelector((state) => state.auth.avatar);
+    const friends = useSelector((state) => state.auth.friends);
 
     const handleLogout = async () => {
         await logout();
@@ -19,15 +20,15 @@ const Profile = () => {
     }
 
     return (
-        <div className="flex flex-col glass w-2/4 ml-4 rounded-lg shadow-lg overflow-hidden">
+        <div className="flex flex-col glass w-2/4 ml-4 rounded-lg shadow-lg">
             <div className="flex flex-col justify-center items-center w-full">
-                <BigHead className="w-48 h-48 cursor-pointer scale-125" {...avatarOption} />
+                <BigHead className="w-24 h-24 lg:w-36 lg:h-36 xl:w-48 xl:h-48 cursor-pointer scale-125 hover:scale-150" {...avatarOption} />
                 <h1 className=" mt-2 p-2 rounded-lg text-2xl font-serif text-center">{capitalize(username)}</h1>
             </div>
             <div className="flex justify-evenly">
                 <div className="flex justify-center space-x-2">
                     <h1 className="text-xl text-muted text-gray-400 font-serif">Friends</h1>
-                    <p className="text-xl text-muted text-gray-400">{0}</p>
+                    <p className="text-xl text-muted text-gray-400">{friends || 0}</p>
                 </div>
                 <div className="flex justify-center space-x-2">
                     <h1 className="text-xl text-muted text-gray-400 font-serif text-center">Groups</h1>
