@@ -34,7 +34,6 @@ const SearchModal = ({ isOpen, setIsOpen }) => {
 
     const startConvo = async (id) => {
         const { data } = await createRoom({ token, id })
-        console.log(data);
         navigate(`/chat/${data.response.username}`)
         handleClose();
     }

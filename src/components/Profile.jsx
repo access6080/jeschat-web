@@ -19,6 +19,8 @@ const Profile = () => {
         window.location.reload();
     }
 
+    console.log(window.innerHeight);
+
     return (
         <div className="flex flex-col glass w-2/4 ml-4 rounded-lg shadow-lg">
             <div className="flex flex-col justify-center items-center w-full">

@@ -4,6 +4,9 @@ module.exports = {
     extend: {
       height: {
         '3/20': '15%',
+      },
+      screen: {
+        tall: '(min-height: 768px)',
       }
     },
   },

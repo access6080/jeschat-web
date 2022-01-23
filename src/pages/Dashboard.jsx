@@ -16,14 +16,25 @@ const Dashboard = () => {
 
     useEffect(() => {
         let isMount = true;
-        const screenSize = window.screen.width;
-        if (isMount && screenSize <= 1024) setMidScreen(true);
+        const handleResize = () => {
+            const screenSize = window.innerWidth;
+            if (isMount) {
+                if(screenSize <= 1024){
+                    setMidScreen(true);
+            } else {
+                    setMidScreen(false);
+            }}
+        }
 
         if (!isAuthenticated) {
             return navigate('/');
         }
+        window.addEventListener('resize', handleResize)
 
-        return () => { isMount = false };
+        return () => {
+            isMount = false;
+            window.removeEventListener('resize', handleResize);
+        };
     }, [midScreen, setMidScreen, isAuthenticated, navigate]);
     
     return (
