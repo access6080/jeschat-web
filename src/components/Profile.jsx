@@ -7,7 +7,6 @@ import { BsThreeDots } from 'react-icons/bs';
 import { capitalize } from '../utils/Text';
 import { logout } from '../api';
 
-// Todo: Add Logout Functionality
 
 const Profile = () => {
     const username = useSelector((state) => state.auth.user);
@@ -19,7 +18,6 @@ const Profile = () => {
         window.location.reload();
     }
 
-    console.log(window.innerHeight);
 
     return (
         <div className="flex flex-col glass w-2/4 ml-4 rounded-lg shadow-lg">
