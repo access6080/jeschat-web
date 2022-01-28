@@ -1,6 +1,7 @@
 import axios from 'axios';
  
-const baseUrl = 'https://jeschat.herokuapp.com'; 
+// const baseUrl = 'https://jeschat.herokuapp.com'; 
+const baseUrl = 'http://localhost:3001';
 
 const apiInstance = axios.create({
     withCredentials: true,

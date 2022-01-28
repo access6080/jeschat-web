@@ -27,7 +27,7 @@ const MessageList = ({ messages, name, room}) => {
     }, [room, token])
 
     return (
-        <div className="flex flex-col justify-end w-full h-4/5 rounded-xl overflow-y-auto scroll-smooth scrollbar-hide">
+        <div className="flex flex-col justify-end">
             {
                 (chat) && chat.map((messageObj, key) =>
                     <Message
@@ -37,7 +37,8 @@ const MessageList = ({ messages, name, room}) => {
                             username: messageObj.sender
                             }}
                         name={name} />
-            )}
+                )
+            }
             {
                 messages.map((message, key) =>
                     <Message key={key} message={message} name={name} />)

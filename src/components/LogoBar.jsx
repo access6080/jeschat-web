@@ -17,7 +17,7 @@ const LogoBar = ({ classProps }) => {
     }
 
     return (
-        <div className={`w-full flex justify-center items-start sm:mb-10  ${classProps}`}  onClick={handleClick}>  
+        <div className={`w-full flex justify-center items-start sm:mb-10 ${classProps}`}  onClick={handleClick}>  
             <img className="m-2 w-16 h-16  cursor-pointer drop-shadow-2xl rotate" src={logo} alt='logo' />
         </div>
     )

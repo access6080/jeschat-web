@@ -45,7 +45,7 @@ const ChatContainer = ({avatar, name, room}) => {
     }, [username, room])
     
     return (
-        <div className="relative glass w-11/12 xl:w-2/4 h-full shadow-lg rounded-lg p-2 mx-auto overflow-auto">
+        <div className="glass w-11/12 xl:w-2/4 h-full shadow-lg rounded-lg p-2 mx-auto overflow-y-auto">
             {/* Chat Header */}
             <div className="flex items-center">
                 <BigHead className="w-10 h-10 cursor-pointer" {...avatar} />
@@ -63,7 +63,9 @@ const ChatContainer = ({avatar, name, room}) => {
             <div className="h-[1px] bg-blue-300" />
 
             {/* Chat  Screen */}
-            <MessageList messages={messageData} name={username} room={room}/>
+            <div className="overflow-y-auto w-full h-4/5 scroll-smooth scrollbar-hide">
+                <MessageList messages={messageData} name={username} room={room}/>
+            </div>
 
             {/* Chat Input Box */}
             <div className="flex w-full justify-between p-2 rounded-xl items-center space-x-6">
