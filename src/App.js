@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import Homepage from './pages/Homepage';
 import Dashboard from './pages/Dashboard'
 import Chat from './pages/Chat';
+import Video from './pages/Video';
 import PageNotFound from './pages/PageNotFound';
 
 import { refreshToken } from './api';
@@ -40,7 +41,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/chat/:name" element={<Chat />}/> 
+        <Route path="/chat/:name" element={<Chat />} /> 
+        <Route path="/video/:room" element={<Video />} />
         <Route path="*" element={<PageNotFound/> }/> 
       </Routes>
     </Router>
