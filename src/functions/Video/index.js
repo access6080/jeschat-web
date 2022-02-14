@@ -1,7 +1,7 @@
 import Peer from "simple-peer";
 import io from "socket.io-client";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl = "https://jeschat.herokuapp.com/";
 export const socket = io(baseUrl);
 
 
