@@ -11,7 +11,7 @@ const RecipientVideo = () => {
             <div className="cursor-pointer bg-blue-500 hover:bg-blue-400 p-4 rounded-full">
                 <BsMicMuteFill />
             </div>
-            <div className="cursor-pointer bg-red-500 hover:bg-red-400 p-4 rounded-full" >
+            <div className="cursor-pointer bg-red-500 hover:bg-red-400 p-4 rounded-full" onClick={() => navigate('/dashboard')}>
                 <HiOutlinePhoneMissedCall />
             </div>
 

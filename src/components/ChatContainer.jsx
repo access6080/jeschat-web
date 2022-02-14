@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BsCameraVideoFill } from 'react-icons/bs';
 import { BigHead } from "@bigheads/core";
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 import EmojiInput from './EmojiInput';
@@ -16,6 +17,7 @@ const ChatContainer = ({avatar, name, room}) => {
     const [messageData, setMessageData] = useState([]);
     const username = useSelector((state) => state.auth.user);
     const token = useSelector((state) => state.auth.token);
+    const navigate = useNavigate();
     const inputRef = useRef(null);
 
     if (isdismissed) {
@@ -55,7 +57,7 @@ const ChatContainer = ({avatar, name, room}) => {
                     <div className="h-3 w-3 rounded-full bg-green-300 shadow-lg shadow-lime-100"/>
                 </div>
 
-                <div className="justify-end hover:scale-125 cursor-pointer">
+                <div className="justify-end hover:scale-125 cursor-pointer" >  {/* onClick={() => navigate(`/video/${room}`)} */}
                     <BsCameraVideoFill className="w-6 h-6 text-blue-400" />
                 </div>
                 
